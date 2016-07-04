@@ -40,7 +40,6 @@ public class Model implements Serializable, Comparable<Model> {
             Model d = (Model)o.readObject();
             o.close();
             System.out.println("Classifier: " + d.model.getClass().getName() + " " + d.model);
-            System.out.println("Classifier: " + d.model.getClass().getName() + " " + d.model);
             System.out.println("FPR: " + d.FPR + ", FNR: " + d.FNR + ", f-measure: " + d.fMeasure + " TNR " + d.TNR + "FPR: " + d.FPR);
             System.out.println("T: " + d.T + " k: " + d.k);
             return d;
