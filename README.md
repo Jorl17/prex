@@ -18,9 +18,9 @@ Table of Contents
   * [The first PreX implementation (this repository)](#the-first-prex-implementation-this-repository)
     * [Coordinator](#coordinator)
     * [Administration Application](#administration-application)
-    * [Client library](#client-library)
-    * [How to create a Probe](#how-to-create-a-probe)
-    * [How to use the try-prevent-catch in the real-world](#how-to-use-the-try-prevent-catch-in-the-real-world)
+     * [Client library](#client-library)
+     * [How to create a Probe](#how-to-create-a-probe)
+     * [How to use the try-prevent-catch in the real-world](#how-to-use-the-try-prevent-catch-in-the-real-world)
 
 As a model, PreX modifies the current `try-catch`semantics onto new, `try-prevent-catch`semantics. The system predicts that an exception can happen in the near future. This prediction is said to _**trigger**_ an _**alarm**_. The alarm interrupts the code within a `try` block and jumps to the `prevent` block, where the developer can specify any code he/she wishes. Once the `prevent` block is terminated, execution resumes as normal.
 
@@ -142,7 +142,7 @@ The client library is used in three ways:
 
 All three of these simple rely on creating instances of the `PrexClient` class and invoking methods.
 
-## How to create a Probe
+### How to create a Probe
 
 If you want to create your own probe all you have to do is instantiate a `PrexClient` (it will automatically forge a connection with the coordinator -- so make sure it is running before!) and use the `sample` method to provide it with a `<variable name>,<variable value>` pair. The first argument of the `PrexClient` class should be a unique identifier (each probe should have its own). The third argument of the `PrexClient` constructor specifies a _buffer size_ before data is flushed to the coordinator. You should fine tune it for your network. An example of a simple code for a probe is the following (note that the buffer size is set to 30 samples):
 
@@ -155,7 +155,7 @@ while ( shouldContinue() )
 
 The above code shows how all you really have to do is call the `sample` method to make your own probes.
 
-## How to use the `try-prevent-catch` in the real-world
+### How to use the `try-prevent-catch` in the real-world
 
 The `try-prevent-catch` mechanism described [in the model](#try-prevent-catch) is implemented slightly differently in this repository. It uses Java generics and reflection to emulate syntactic additions to the language. Unfortunately, since it is only a library, there are some limitations. Most notably, you are forced to manually call a method whenever you want to check if an _alarm_ has been _triggered_. In other words, you'll have to call that method to be able to jump into the `prevent` block. 
 
