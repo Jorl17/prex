@@ -147,7 +147,7 @@ All three of these simple rely on creating instances of the `PrexClient` class a
 If you want to create your own probe all you have to do is instantiate a `PrexClient` (it will automatically forge a connection with the coordinator -- so make sure it is running before!) and use the `sample` method to provide it with a `<variable name>,<variable value>` pair. The first argument of the `PrexClient` class should be a unique identifier (each probe should have its own). The third argument of the `PrexClient` constructor specifies a _buffer size_ before data is flushed to the coordinator. You should fine tune it for your network. An example of a simple code for a probe is the following (note that the buffer size is set to 30 samples):
 
 ```
-PrexClient client = new PrexClient("probe1" /* unique id */, "localhost" /* coordinator host */, 1610 /* port */, 3 /* buffer size */);
+PrexClient client = new PrexClient("probe1" /* unique id */, "localhost" /* coordinator host */, 1610 /* port */, 30 /* buffer size */);
 while ( shouldContinue() )
    for ( Feature f : getAllFeatures() )
       client.sample(f.name(), f.value());
